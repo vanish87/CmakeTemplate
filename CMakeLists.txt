@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
 
-project(BaseLib)
+project(vEngine)
 
-add_executable(BaseLib main.cpp)
+add_subdirectory(Source)
