@@ -7,3 +7,9 @@
 [submodule "Source/ExternalLibs/FX11"]
 	path = Source/ExternalLibs/FX11
 	url = https://github.com/Microsoft/FX11.git
+[submodule "Source/ExternalLibs/freetype2"]
+	path = Source/ExternalLibs/freetype2
+	url = https://git.sv.nongnu.org/r/freetype/freetype2.git
+[submodule "Source/ExternalLibs/lua"]
+	path = Source/ExternalLibs/lua
+	url = https://github.com/LuaDist/lua.git
