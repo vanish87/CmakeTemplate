@@ -1,12 +1,6 @@
 [submodule "Source/ExternalLibs/assimp"]
 	path = Source/ExternalLibs/assimp
 	url = https://github.com/assimp/assimp.git
-[submodule "Source/ExternalLibs/DirectXTex"]
-	path = Source/ExternalLibs/DirectXTex
-	url = https://github.com/Microsoft/DirectXTex.git
-[submodule "Source/ExternalLibs/FX11"]
-	path = Source/ExternalLibs/FX11
-	url = https://github.com/Microsoft/FX11.git
 [submodule "Source/ExternalLibs/freetype2"]
 	path = Source/ExternalLibs/freetype2
 	url = https://git.sv.nongnu.org/r/freetype/freetype2.git
