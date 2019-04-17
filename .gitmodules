@@ -7,3 +7,9 @@
 [submodule "Source/ExternalLibs/lua"]
 	path = Source/ExternalLibs/lua
 	url = https://github.com/LuaDist/lua.git
+[submodule "Source/ExternalLibs/ManualBuild/DirectXTK"]
+	path = Source/ExternalLibs/ManualBuild/DirectXTK
+	url = https://github.com/Microsoft/DirectXTK.git
+[submodule "Source/ExternalLibs/ManualBuild/FX11"]
+	path = Source/ExternalLibs/ManualBuild/FX11
+	url = https://github.com/Microsoft/FX11.git
