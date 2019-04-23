@@ -1,5 +1,8 @@
 import subprocess
 import os
-subprocess.run(["cmake", "../Source/ExternalLibs"], cwd="build/")
-subprocess.run(["cmake", "--build", ".", "--target", "install"], cwd="build/")
+buildPath="Build/External"
+if not os.path.exists(buildPath):
+	os.makedirs(buildPath, exist_ok=True)
+subprocess.run(["cmake", "../../Source/ExternalLibs", "-DCMAKE_BUILD_TYPE=Debug"], cwd=buildPath)
+subprocess.run(["cmake", "--build", ".", "--target", "install"], cwd=buildPath)
 os.system("pause")
