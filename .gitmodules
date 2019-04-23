@@ -13,3 +13,6 @@
 [submodule "Source/ExternalLibs/ManualBuild/FX11"]
 	path = Source/ExternalLibs/ManualBuild/FX11
 	url = https://github.com/Microsoft/FX11.git
+[submodule "Source/ExternalLibs/tinyxml2"]
+	path = Source/ExternalLibs/tinyxml2
+	url = https://github.com/leethomason/tinyxml2.git
