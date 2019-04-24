@@ -14,8 +14,6 @@ int main(int argc, char* argv[])
     cout<<"Hello World"<<endl;
     aiVector2D vectortest;
     D3DX11_EFFECT_DESC desc;
-
-
     
 	FT_Library  library;
 	FT_Face     face;
