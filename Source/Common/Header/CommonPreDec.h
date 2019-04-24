@@ -7,6 +7,7 @@
 //#define VENGINE_API __declspec(dllexport)
 #define VENGINE_API
 
+#include <cstdint>
 
 //debug and assert
 #include <iostream>
@@ -19,24 +20,29 @@ void ErrorText(std::string text);
 #define PRINT_ERROR(x) ErrorText(x);
 #define PRINT_AND_RETURN(x, returnVal) {PRINT(x);return returnVal;}
 #define PRINT_FILE_AND_FUCTION PRINT("in File "<<__FILE__<<" Line "<<__LINE__<<" Function "<<__FUNCTION__);
+#if _MSC_VER >= 1400 
+#define DEBUG_BREAK __debugbreak();
+#else
+#define DEBUG_BREAK
+#endif
 #define PRINT_AND_BREAK(x) \
 {\
 	PRINT(x); \
 	PRINT_FILE_AND_FUCTION;\
-	__debugbreak();\
-}
+	DEBUG_BREAK\
+}	
 #define CHECK_AND_ASSERT(condition,x) \
 {\
 	if(!(condition)){\
 		PRINT(x); \
 		PRINT_FILE_AND_FUCTION;\
-		__debugbreak();}\
+		DEBUG_BREAK}\
 }
 #define CHECK_ASSERT(condition) \
 {\
 	if(!(condition)){\
 		PRINT_FILE_AND_FUCTION;\
-		__debugbreak();}\
+		DEBUG_BREAK}\
 }
 #define COMPILE_PRINT_AND_ASSERT(exp, x) {static_assert(exp, x);}
 
@@ -59,15 +65,15 @@ private:\
 
 namespace vEngine
 {
-	typedef __int8  int8_t;
-	typedef __int16 int16_t;
-	typedef __int32 int32_t;
-	typedef __int64 int64_t;
+	typedef std::int8_t  int8_t;
+	typedef std::int16_t int16_t;
+	typedef std::int32_t int32_t;
+	typedef std::int64_t int64_t;
 	typedef unsigned char	 byte;
-	typedef unsigned __int8  uint8_t;
-	typedef unsigned __int16 uint16_t;
-	typedef unsigned __int32 uint32_t;
-	typedef unsigned __int64 uint64_t;
+	typedef std::uint8_t  uint8_t;
+	typedef std::uint16_t uint16_t;
+	typedef std::uint32_t uint32_t;
+	typedef std::uint64_t uint64_t;
 	
 	template <typename T>
 	class Vec2;
