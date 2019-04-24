@@ -20,11 +20,15 @@ include_directories(
 
 #link_directories(${EXTERNAL_BUILD_DIR}/lib)
 
+set(PROJECT_ROOT_HEADER_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 
 get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
 foreach(dir ${dirs})
   message(STATUS "dir='${dir}'")
 endforeach()
+
+
+add_subdirectory(Common)
 
 add_executable(BaseLib main.cpp)
 target_link_libraries(BaseLib 
