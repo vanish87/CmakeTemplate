@@ -1,41 +1,45 @@
 
-# ASSIMP_FOUND
-# ASSIMP_INCLUDE_DIR
-# ASSIMP_LIBRARY_RELEASE
-# ASSIMP_LIBRARY_DEBUG
-# ASSIMP_LIBRARIES
-# ASSIMP_BINARY (win32 only)
+# FREETYPE_FOUND
+# FREETYPE_INCLUDE_DIR
+# FREETYPE_LIBRARY_RELEASE
+# FREETYPE_LIBRARY_DEBUG
+# FREETYPE_LIBRARIES
+# FREETYPE_BINARY (win32 only)
 
 include(FindPackageHandleStandardArgs)
 
-find_path(ASSIMP_INCLUDE_DIR freetype2/ft2build.h
+find_path(FREETYPE_INCLUDE_DIR freetype/freetype.h
 
     PATHS
-    $ENV{ASSIMP_DIR}
+    $ENV{FREETYPE_DIR}
     $ENV{PROGRAMFILES}/freetype2
     /usr
     /usr/local
     /sw
-    /opt/local
-
+    /opt/local	
+    ${EXTERNAL_BUILD_DIR}
+    
     PATH_SUFFIXES
     /include
+    /include/freetype2
+    
+    DOC "The directory where FREETYPE/Importer.hpp etc. resides")
 
-    DOC "The directory where assimp/Importer.hpp etc. resides")
 
+message(${FREETYPE_INCLUDE_DIR})
 if(MSVC AND X64)
-    set(ASSIMP_PF "64")
+    set(FREETYPE_PF "64")
 else()
-    set(ASSIMP_PF "86")
+    set(FREETYPE_PF "86")
 endif()
 
-find_library(ASSIMP_LIBRARY_RELEASE NAMES freetype
+find_library(FREETYPE_LIBRARY_RELEASE NAMES freetype
     
     HINTS
-    ${ASSIMP_INCLUDE_DIR}/..
+    ${FREETYPE_INCLUDE_DIR}/../..
     
     PATHS
-    $ENV{ASSIMP_DIR}
+    $ENV{FREETYPE_DIR}
     /usr
     /usr/local
     /sw
@@ -43,19 +47,19 @@ find_library(ASSIMP_LIBRARY_RELEASE NAMES freetype
 
     PATH_SUFFIXES
     /lib
-    /lib${ASSIMP_PF}
+    /lib${FREETYPE_PF}
     /build/code
     /build-debug/code
 
-    DOC "The Assimp library (release)")
+    DOC "The FREETYPE library (release)")
 
-find_library(ASSIMP_LIBRARY_DEBUG NAMES freetyped
+find_library(FREETYPE_LIBRARY_DEBUG NAMES freetyped
     
     HINTS
-    ${ASSIMP_INCLUDE_DIR}/..
+    ${FREETYPE_INCLUDE_DIR}/../..
 
     PATHS
-    $ENV{ASSIMP_DIR}
+    $ENV{FREETYPE_DIR}
     /usr
     /usr/local
     /sw
@@ -63,40 +67,40 @@ find_library(ASSIMP_LIBRARY_DEBUG NAMES freetyped
 
     PATH_SUFFIXES
     /lib
-    /lib${ASSIMP_PF}
+    /lib${FREETYPE_PF}
     /build/code
     /build-debug/code
 
-    DOC "The Assimp library (debug)")
+    DOC "The FREETYPE library (debug)")
 
-set(ASSIMP_LIBRARIES "")
-if(ASSIMP_LIBRARY_RELEASE AND ASSIMP_LIBRARY_DEBUG)
-    set(ASSIMP_LIBRARIES 
-        optimized   ${ASSIMP_LIBRARY_RELEASE}
-        debug       ${ASSIMP_LIBRARY_DEBUG})
-elseif(ASSIMP_LIBRARY_RELEASE)
-    set(ASSIMP_LIBRARIES ${ASSIMP_LIBRARY_RELEASE})
-elseif(ASSIMP_LIBRARY_DEBUG)
-    set(ASSIMP_LIBRARIES ${ASSIMP_LIBRARY_DEBUG})
+set(FREETYPE_LIBRARIES "")
+if(FREETYPE_LIBRARY_RELEASE AND FREETYPE_LIBRARY_DEBUG)
+    set(FREETYPE_LIBRARIES 
+        optimized   ${FREETYPE_LIBRARY_RELEASE}
+        debug       ${FREETYPE_LIBRARY_DEBUG})
+elseif(FREETYPE_LIBRARY_RELEASE)
+    set(FREETYPE_LIBRARIES ${FREETYPE_LIBRARY_RELEASE})
+elseif(FREETYPE_LIBRARY_DEBUG)
+    set(FREETYPE_LIBRARIES ${FREETYPE_LIBRARY_DEBUG})
 endif()
 
 if(WIN32)
 
-    find_file(ASSIMP_BINARY NAMES freetype.dll "assimp${ASSIMP_PF}.dll"
+    find_file(FREETYPE_BINARY NAMES freetype.dll "FREETYPE${FREETYPE_PF}.dll"
 
         HINTS
-        ${ASSIMP_INCLUDE_DIR}/..
+        ${FREETYPE_INCLUDE_DIR}/..
         
         PATHS
-        $ENV{ASSIMP_DIR}
+        $ENV{FREETYPE_DIR}
 
         PATH_SUFFIXES
         /bin
-        /bin${ASSIMP_PF}
+        /bin${FREETYPE_PF}
 
-        DOC "The Assimp binary")
+        DOC "The FREETYPE binary")
 
 endif()
 
-find_package_handle_standard_args(ASSIMP DEFAULT_MSG ASSIMP_LIBRARIES ASSIMP_INCLUDE_DIR)
-mark_as_advanced(ASSIMP_FOUND ASSIMP_INCLUDE_DIR ASSIMP_LIBRARIES)
+find_package_handle_standard_args(FREETYPE DEFAULT_MSG FREETYPE_LIBRARIES FREETYPE_INCLUDE_DIR)
+mark_as_advanced(FREETYPE_FOUND FREETYPE_INCLUDE_DIR FREETYPE_LIBRARIES)

@@ -1,41 +1,42 @@
 
-# ASSIMP_FOUND
-# ASSIMP_INCLUDE_DIR
-# ASSIMP_LIBRARY_RELEASE
-# ASSIMP_LIBRARY_DEBUG
-# ASSIMP_LIBRARIES
-# ASSIMP_BINARY (win32 only)
+# TINYXML2_FOUND
+# TINYXML2_INCLUDE_DIR
+# TINYXML2_LIBRARY_RELEASE
+# TINYXML2_LIBRARY_DEBUG
+# TINYXML2_LIBRARIES
+# TINYXML2_BINARY (win32 only)
 
 include(FindPackageHandleStandardArgs)
 
-find_path(ASSIMP_INCLUDE_DIR assimp/Importer.hpp
+find_path(TINYXML2_INCLUDE_DIR tinyxml2.h
 
     PATHS
-    $ENV{ASSIMP_DIR}
-    $ENV{PROGRAMFILES}/Assimp
+    $ENV{TINYXML2_DIR}
+    $ENV{PROGRAMFILES}/TINYXML2
     /usr
     /usr/local
     /sw
     /opt/local
+	${EXTERNAL_BUILD_DIR}
 
     PATH_SUFFIXES
     /include
 
-    DOC "The directory where assimp/Importer.hpp etc. resides")
+    DOC "The directory where TINYXML2/Importer.hpp etc. resides")
 
 if(MSVC AND X64)
-    set(ASSIMP_PF "64")
+    set(TINYXML2_PF "64")
 else()
-    set(ASSIMP_PF "86")
+    set(TINYXML2_PF "86")
 endif()
 
-find_library(ASSIMP_LIBRARY_RELEASE NAMES assimp
+find_library(TINYXML2_LIBRARY_RELEASE NAMES TINYXML2
     
     HINTS
-    ${ASSIMP_INCLUDE_DIR}/..
+    ${TINYXML2_INCLUDE_DIR}/..
     
     PATHS
-    $ENV{ASSIMP_DIR}
+    $ENV{TINYXML2_DIR}
     /usr
     /usr/local
     /sw
@@ -43,19 +44,19 @@ find_library(ASSIMP_LIBRARY_RELEASE NAMES assimp
 
     PATH_SUFFIXES
     /lib
-    /lib${ASSIMP_PF}
+    /lib${TINYXML2_PF}
     /build/code
     /build-debug/code
 
-    DOC "The Assimp library (release)")
+    DOC "The TINYXML2 library (release)")
 
-find_library(ASSIMP_LIBRARY_DEBUG NAMES assimpd
+find_library(TINYXML2_LIBRARY_DEBUG NAMES TINYXML2d
     
     HINTS
-    ${ASSIMP_INCLUDE_DIR}/..
+    ${TINYXML2_INCLUDE_DIR}/..
 
     PATHS
-    $ENV{ASSIMP_DIR}
+    $ENV{TINYXML2_DIR}
     /usr
     /usr/local
     /sw
@@ -63,40 +64,40 @@ find_library(ASSIMP_LIBRARY_DEBUG NAMES assimpd
 
     PATH_SUFFIXES
     /lib
-    /lib${ASSIMP_PF}
+    /lib${TINYXML2_PF}
     /build/code
     /build-debug/code
 
-    DOC "The Assimp library (debug)")
+    DOC "The TINYXML2 library (debug)")
 
-set(ASSIMP_LIBRARIES "")
-if(ASSIMP_LIBRARY_RELEASE AND ASSIMP_LIBRARY_DEBUG)
-    set(ASSIMP_LIBRARIES 
-        optimized   ${ASSIMP_LIBRARY_RELEASE}
-        debug       ${ASSIMP_LIBRARY_DEBUG})
-elseif(ASSIMP_LIBRARY_RELEASE)
-    set(ASSIMP_LIBRARIES ${ASSIMP_LIBRARY_RELEASE})
-elseif(ASSIMP_LIBRARY_DEBUG)
-    set(ASSIMP_LIBRARIES ${ASSIMP_LIBRARY_DEBUG})
+set(TINYXML2_LIBRARIES "")
+if(TINYXML2_LIBRARY_RELEASE AND TINYXML2_LIBRARY_DEBUG)
+    set(TINYXML2_LIBRARIES 
+        optimized   ${TINYXML2_LIBRARY_RELEASE}
+        debug       ${TINYXML2_LIBRARY_DEBUG})
+elseif(TINYXML2_LIBRARY_RELEASE)
+    set(TINYXML2_LIBRARIES ${TINYXML2_LIBRARY_RELEASE})
+elseif(TINYXML2_LIBRARY_DEBUG)
+    set(TINYXML2_LIBRARIES ${TINYXML2_LIBRARY_DEBUG})
 endif()
 
 if(WIN32)
 
-    find_file(ASSIMP_BINARY NAMES assimp.dll "assimp${ASSIMP_PF}.dll"
+    find_file(TINYXML2_BINARY NAMES TINYXML2.dll "TINYXML2${TINYXML2_PF}.dll"
 
         HINTS
-        ${ASSIMP_INCLUDE_DIR}/..
+        ${TINYXML2_INCLUDE_DIR}/..
         
         PATHS
-        $ENV{ASSIMP_DIR}
+        $ENV{TINYXML2_DIR}
 
         PATH_SUFFIXES
         /bin
-        /bin${ASSIMP_PF}
+        /bin${TINYXML2_PF}
 
-        DOC "The Assimp binary")
+        DOC "The TINYXML2 binary")
 
 endif()
 
-find_package_handle_standard_args(ASSIMP DEFAULT_MSG ASSIMP_LIBRARIES ASSIMP_INCLUDE_DIR)
-mark_as_advanced(ASSIMP_FOUND ASSIMP_INCLUDE_DIR ASSIMP_LIBRARIES)
+find_package_handle_standard_args(TINYXML2 DEFAULT_MSG TINYXML2_LIBRARIES TINYXML2_INCLUDE_DIR)
+mark_as_advanced(TINYXML2_FOUND TINYXML2_INCLUDE_DIR TINYXML2_LIBRARIES)

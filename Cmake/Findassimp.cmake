@@ -1,3 +1,7 @@
+
+include(FindPackageHandleStandardArgs)
+
+
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)
 	set(ASSIMP_ARCHITECTURE "64")
 elseif(CMAKE_SIZEOF_VOID_P EQUAL 4)
@@ -28,6 +32,7 @@ if(WIN32)
 				assimp-${ASSIMP_MSVC_VERSION}-mt.lib
 			HINTS
 				${ASSIMP_ROOT_DIR}/lib${ASSIMP_ARCHITECTURE}
+				${ASSIMP_ROOT_DIR}/lib
 		)
 		
 		find_library(ASSIMP_LIBRARY_RELEASE				assimp-${ASSIMP_MSVC_VERSION}-mt.lib 			PATHS ${ASSIMP_LIBRARY_DIR})
@@ -38,7 +43,7 @@ if(WIN32)
 			debug		${ASSIMP_LIBRARY_DEBUG}
 		)
 		
-		set(ASSIMP_LIBRARIES "ASSIMP_LIBRARY_RELEASE" "ASSIMP_LIBRARY_DEBUG")
+		set(ASSIMP_LIBRARIES ${ASSIMP_LIBRARIES} )
 	
 		FUNCTION(ASSIMP_COPY_BINARIES TargetDirectory)
 			ADD_CUSTOM_TARGET(AssimpCopyBinaries
@@ -79,3 +84,6 @@ else(WIN32)
 	endif (assimp_FOUND)
 	
 endif(WIN32)
+
+
+find_package_handle_standard_args(ASSIMP DEFAULT_MSG ASSIMP_LIBRARIES ASSIMP_INCLUDE_DIR)
