@@ -10,10 +10,8 @@
 #include <cstdint>
 
 //debug and assert
-#include <iostream>
-//TODO Print colored warning with this
-void WarningText(std::string text);
-void ErrorText(std::string text);
+#include "Common/Header/DebugMessage.h"
+
 #define PRINT(x) std::cout<<x<<std::endl;
 #define PRINT_VAR(x) std::cout<<#x<<": "<<std::endl;x.Print();
 #define PRINT_WARNING(x) WarningText(x);

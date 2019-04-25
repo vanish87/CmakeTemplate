@@ -5,9 +5,12 @@
 #include "ft2build.h"
 #include FT_FREETYPE_H
 //#include "FX11/d3dx11effect.h"
-
+#include "Common/Header/CommonPreDec.h"
+#include "Common/Header/Vector.h"
+#include "Common/Header/Math.h"
 
 using namespace std;
+using namespace vEngine;
 
 int main(int argc, char* argv[])
 {
@@ -20,4 +23,10 @@ int main(int argc, char* argv[])
     
 	FT_Error error = FT_Init_FreeType(&library);
 	error = FT_Done_FreeType(library);
+
+
+	float3 pos = float3(0);
+	pos.x() += 1;
+
+	float test = Math::InvSqrt(10);
 }

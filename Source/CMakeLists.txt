@@ -37,5 +37,6 @@ target_link_libraries(BaseLib
     ${FREETYPE_LIBRARIES} 
     ${FX11_LIBRARIES} 
     ${LUA_LIBRARIES} 
-    ${TINYXML2_LIBRARIES}  
+    ${TINYXML2_LIBRARIES} 
+    CommonLib 
 )

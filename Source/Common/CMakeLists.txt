@@ -43,10 +43,10 @@ file(GLOB sources
 # Group source files
 set(header_group "Header Files (API)")
 set(source_group "Source Files")
-#source_group_by_path(${include_path} "\\\\.h$|\\\\.hpp$" 
- #   ${header_group} ${headers})
-#source_group_by_path(${source_path}  "\\\\.cpp$|\\\\.c$|\\\\.h$|\\\\.hpp$" 
- #   ${source_group} ${sources})
+source_group_by_path(${include_path} "\\\\.h$|\\\\.hpp$" 
+   ${header_group} ${headers})
+source_group_by_path(${source_path}  "\\\\.cpp$|\\\\.c$|\\\\.h$|\\\\.hpp$" 
+   ${source_group} ${sources})
 
 
 # 
@@ -60,6 +60,9 @@ add_library(${target}
 
 # Create namespaced alias
 add_library(${META_PROJECT_NAME}::${target} ALIAS ${target})
+
+#Use export to make this lib visiable for other projects
+#export(TARGETS ${target} NAMESPACE ${META_PROJECT_NAME}:: FILE ${PROJECT_BINARY_DIR}/cmake/${target}/${target}-export.cmake)
 
 
 target_include_directories(${target} 
