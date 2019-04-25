@@ -23,7 +23,8 @@ void ErrorText(std::string text);
 #if _MSC_VER >= 1400 
 #define DEBUG_BREAK __debugbreak();
 #else
-#define DEBUG_BREAK
+#include <signal.h>
+#define DEBUG_BREAK raise(SIGTRAP);
 #endif
 #define PRINT_AND_BREAK(x) \
 {\
