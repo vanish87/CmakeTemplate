@@ -12,6 +12,8 @@
 //debug and assert
 #include "Common/Header/DebugMessage.h"
 
+#include "vEngine/vEngine-version.h"
+
 #define PRINT(x) std::cout<<x<<std::endl;
 #define PRINT_VAR(x) std::cout<<#x<<": "<<std::endl;x.Print();
 #define PRINT_WARNING(x) WarningText(x);

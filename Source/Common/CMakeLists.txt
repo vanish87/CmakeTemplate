@@ -38,7 +38,6 @@ if (WriterCompilerDetectionHeaderFound)
         FEATURES cxx_alignas cxx_alignof cxx_constexpr cxx_final cxx_noexcept cxx_nullptr cxx_sizeof_member cxx_thread_local
         VERSION 3.2
     )
-    message(${feature_file})
 else()
     file(
         COPY ${PROJECT_SOURCE_DIR}/source/codegeneration/${target}_features.h
@@ -48,15 +47,6 @@ else()
 endif()
 
 
-# Create API export header
-generate_export_header(${target}
-    EXPORT_FILE_NAME  ${export_file}
-    EXPORT_MACRO_NAME ${export_macro}
-)
-#generate_template_export_header(${target}
-#    ${target_id}
-#    ${template_export_file}
-#)
 
 
 # 
@@ -97,6 +87,48 @@ add_library(${META_PROJECT_NAME}::${target} ALIAS ${target})
 
 #Use export to make this lib visiable for other projects
 export(TARGETS ${target} NAMESPACE ${META_PROJECT_NAME}:: FILE ${PROJECT_BINARY_DIR}/cmake/${target}/${target}-export.cmake)
+
+
+
+
+# Create API export header
+generate_export_header(${target}
+    EXPORT_FILE_NAME  ${export_file}
+    EXPORT_MACRO_NAME ${export_macro}
+)
+#generate_template_export_header(${target}
+#    ${target_id}
+#    ${template_export_file}
+#)
+
+
+# 
+# Project options
+# 
+
+set_target_properties(${target}
+    PROPERTIES
+    ${DEFAULT_PROJECT_OPTIONS}
+    FOLDER "${IDE_FOLDER}"
+    VERSION ${META_VERSION}
+    SOVERSION ${META_VERSION_MAJOR}
+)
+
+
+# 
+# Compile definitions
+# 
+
+target_compile_definitions(${target}
+    PRIVATE
+
+    PUBLIC
+    $<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:${target_id}_STATIC_DEFINE>
+    ${DEFAULT_COMPILE_DEFINITIONS}
+
+    INTERFACE
+)
+
 
 
 target_include_directories(${target} 
